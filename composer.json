@@ -1,6 +1,7 @@
 {
     "name": "d-shorkin/arrayable-xml",
     "description": "PHP library for parsing XML to array",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dmitriy Shorkin",
