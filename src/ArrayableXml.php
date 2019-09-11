@@ -57,14 +57,7 @@ class ArrayableXml implements ArrayableXmlInterface
      */
     public function toArray(): array
     {
-        // This needs for load root attributes
-        $dom = dom_import_simplexml($this->xml);
-        $tmp = new \SimpleXMLElement(sprintf('<root>%s</root>', $dom->ownerDocument->saveXML($dom->ownerDocument->documentElement)));
-        $array = $this->nodeToArray($tmp);
-        if($this->miniElements){
-            return $array[$this->xml->getName()];
-        }
-        return $array[$this->xml->getName()][0];
+        return $this->nodeToArray($this->xml);
     }
 
     /**
@@ -73,39 +66,42 @@ class ArrayableXml implements ArrayableXmlInterface
      */
     private function nodeToArray(\SimpleXMLElement $xml): array
     {
+        // Process node
+        $data = $this->parseNodeAttributes($xml);
+
+        if (trim((string)$xml)) {
+            $data[$this->textFieldName] = trim((string)$xml);
+        }
+
+        if (!$xml->count()) {
+            return $data;
+        }
+
+        // Load children
         $children = [];
+        foreach ($xml->children() as $child) {
+            if (!isset($children[$child->getName()])) {
+                $children[$child->getName()] = [];
+            }
 
-        foreach ($xml->children() as $node) {
-            $arr = $this->parseNodeAttributes($node);
-
-            if ($node->count()) {
-                if (!$this->childrenFieldName) {
-                    $arr = array_merge($arr, $this->nodeToArray($node));
-                } else {
-                    $arr[$this->childrenFieldName] = $this->nodeToArray($node);
+            $children[$child->getName()][] = $this->nodeToArray($child);
+        }
+        // Compact children
+        if($this->miniElements){
+            foreach ($children as $key => $value) {
+                if (count($value) == 1) {
+                    $children[$key] = $children[$key][0];
                 }
-            } elseif ((string)$node) {
-                $arr[$this->textFieldName] = (string)$node;
-            }
-
-            if (!isset($children[$node->getName()])) {
-                $children[$node->getName()] = [];
-            }
-
-            $children[$node->getName()][] = $arr;
-        }
-
-        if (!$this->miniElements) {
-            return $children;
-        }
-
-        foreach ($children as $key => $value) {
-            if (count($value) == 1) {
-                $children[$key] = $children[$key][0];
             }
         }
 
-        return $children;
+        // Output
+        if($this->childrenFieldName){
+            $data[$this->childrenFieldName] = $children;
+            return $data;
+        }
+
+        return array_merge($data, $children);
     }
 
     private function parseNodeAttributes(\SimpleXMLElement $node)
