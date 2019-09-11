@@ -1,0 +1,32 @@
+{
+    "name": "d-shorkin/arrayable-xml",
+    "description": "PHP library for parsing XML to array",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "laravel/framework": ">=5.0",
+        "orchestra/testbench": "^3.5",
+        "phpunit/phpunit": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dshorkin\\ArrayableXml\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dshorkin\\ArrayableXml\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dshorkin\\ArrayableXml\\Laravel\\ArrayableXmlProvider"
+            ],
+            "aliases": {
+                "ArrayableXml": "Dshorkin\\ArrayableXml\\Laravel\\ArrayableXml"
+            }
+        }
+    }
+}

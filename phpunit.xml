@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true">
+    <php>
+        <env name="APP_KEY" value="asdjjHYUGHBJCUvDJGDgydhjDHJDDJHdhjvdvghDVGH"/>
+    </php>
+    <testsuites>
+        <testsuite name="Unit tests">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Laravel tests">
+            <directory suffix="Test.php">./tests/Laravel</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
