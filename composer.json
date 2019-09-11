@@ -1,6 +1,12 @@
 {
     "name": "d-shorkin/arrayable-xml",
     "description": "PHP library for parsing XML to array",
+    "authors": [
+        {
+            "name": "Dmitriy Shorkin",
+            "email": "d.shorkin@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=7.0.0"
     },
