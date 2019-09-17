@@ -2,7 +2,7 @@
 
 PHP library for parsing XML to array. This library can formatting attributes of xml
 
-### Installation
+## Installation
 
 Install via composer:
 
@@ -10,7 +10,7 @@ Install via composer:
 composer require d-shorkin/arrayable-xml
 ```
 
-### Usage
+## Usage
 
 ```php
 $xmlString = <<<XML
@@ -53,7 +53,7 @@ array(2) {
 }
 ```
 
-### Laravel
+## Laravel
 
 If you does not use `php artisan package:discover` command. You need add `ArrayableXmlProvider` to config.
 
@@ -73,17 +73,17 @@ If you does not use `php artisan package:discover` command. You need add `Arraya
 ]
 ```
 
-Basic usage
+Basic laravel usage:
 
 ```php
 ArrayableXml::create($xmlString)->toArray()
 ```
 
-### Class reference
+## Class reference
 
 Dshorkin\ArrayableXml\ArrayableXmlFactory
 
-##### Create
+#### Create
 
 ```
 ArrayableXmlFactory::create(string $str, [string $childrenFieldKey, [string $textFieldKey, [bool $miniElements]]]): ArrayableXmlInterface
@@ -97,7 +97,7 @@ ArrayableXmlFactory::create(string $str, [string $childrenFieldKey, [string $tex
 | miniElements     	| bool   	| true     	| If you disable it all elements will be return array of children. By default if parent has single child that will be returned alone 	|
 
 
-##### Create From SimpleXmlElement
+#### Create From SimpleXmlElement
 
 ```
 ArrayableXmlFactory::createFromSimpleXmlElement(\SimpleXMLElement $xml, [string $childrenFieldKey, [string $textFieldKey, [bool $miniElements]]]): ArrayableXmlInterface
