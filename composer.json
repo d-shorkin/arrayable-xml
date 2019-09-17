@@ -1,11 +1,12 @@
 {
     "name": "d-shorkin/arrayable-xml",
-    "description": "PHP library for parsing XML to array",
+    "description": "PHP library for parsing XML to array with laravel support",
     "keywords": [
         "xml",
         "convent",
         "array",
-        "xml-to-array"
+        "xml-to-array",
+        "laravel"
     ],
     "license": "MIT",
     "authors": [

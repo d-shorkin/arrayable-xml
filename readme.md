@@ -4,6 +4,8 @@ PHP library for parsing XML to array. This library can formatting attributes of 
 
 ### Installation
 
+Install via composer:
+
 ```bash
 composer require d-shorkin/arrayable-xml
 ```
@@ -49,6 +51,32 @@ array(2) {
     }
   }
 }
+```
+
+### Laravel
+
+If you does not use `php artisan package:discover` command. You need add `ArrayableXmlProvider` to config.
+
+`config/app.php`
+
+```php
+'providers' => [
+    // ...
+    
+    Dshorkin\ArrayableXml\Laravel\ArrayableXmlProvider::class,
+],
+
+'aliases' => [
+    // ...
+    
+    'ArrayableXml' => Dshorkin\\ArrayableXml\Laravel\ArrayableXml::class
+]
+```
+
+Basic usage
+
+```php
+ArrayableXml::create($xmlString)->toArray()
 ```
 
 ### Class reference
